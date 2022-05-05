@@ -10,7 +10,8 @@ from django.contrib.auth import authenticate,login
 
 def index(request):
      return render(request,'myapp/index.html')
-    
+
+# store a student   
 def student(request):
     if request.method=='POST':
         membership_no=request.POST['membership_no']
