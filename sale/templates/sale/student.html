@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Vertical (basic) form</h2>
+  <form>
+    {% csrf_token %}
+    <div class="jumbotron">
+    <div class="form-group">
+        <label for="membership_no">membership_no:</label>
+        <input type="text" class="form-control" id="membership_no" placeholder="Enter membership_no" name="membership_no">
+    </div>
+    <div class="form-group">
+      <label for="form_data">form_data:</label>
+      <input type="text" class="form-control" id="form_data" placeholder="Enter form_data" name="form_data">
+    </div>
+    <div class="form-group">
+        <label for="guardian_name">guardian_name:</label>
+        <input type="text" class="form-control" id="guardian_name" placeholder="Enter guardian_name" name="guardian_name">
+    </div>
+    <div class="form-group">
+        <label for="mothers_maiden_name">mothers_maiden_name:</label>
+        <input type="text" class="form-control" id="mothers_maiden_name" placeholder="Enter mothers_maiden_name" name="mothers_maiden_name">
+    </div>
+    <div class="form-group">
+        <label for="phone">phone:</label>
+        <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+        <label for="gender">gender:</label>
+        <input type="text" class="form-control" id="gender" placeholder="Enter gender" name="gender">
+    </div>
+    <div class="form-group">
+        <label for="eductional_qualification">eductional_qualification:</label>
+        <input type="text" class="form-control" id="eductional_qualification" placeholder="Enter eductional_qualification" name="eductional_qualification">
+    </div>
+    <div class="form-group">
+        <label for="membership_fee">membership_fee:</label>
+        <input type="text" class="form-control" id="membership_fee" placeholder="Enter membership_fee" name="membership_fee">
+    </div>
+    <div class="form-group">
+      <label for="share_count">share_count:</label>
+      <input type="text" class="form-control" id="share_count" placeholder="share_count" name="share_count">
+    </div>
+    <div class="form-group">
+        <label for="introduced_by">introduced_by:</label>
+        <input type="text" class="form-control" id="introduced_by" placeholder="Enter introduced_by" name="introduced_by">
+    </div>
+    <div class="form-group">
+        <label for="witness">witness:</label>
+        <input type="text" class="form-control" id="witness" placeholder="Enter witness" name="witness">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" id="fetchBtn"class="btn btn-default"onclick="reset();">Submit</button>
+  </form>
+</div>
+<script type="text/javascript">
+  function reset() {
+        console.log("Button Clicked");
+        const membership_no = document.getElementById("membership_no").value;
+        const form_data = document.getElementById(" form_data").value;
+        const guardian_name = document.getElementById("guardian_name").value;
+        const mothers_maiden_name = document.getElementById("mothers_maiden_name").value;
+        const phone = document.getElementById("phone").value;
+        const email  = document.getElementById("email ").value;
+        const gender = document.getElementById("gender").value;
+        const educational_qualification = document.getElementById("educational_qualification").value;
+        const membership_fee = document.getElementById("membership_fee").value;
+        const share_count = document.getElementById("share_count").value;
+        const introduced_by = document.getElementById("introduced_by").value;
+        const witness  = document.getElementById("witness").value;
+        console.log(csrf);
+        console.log(membership_no);
+        console.log(form_data);
+        console.log(guardian_name);
+        console.log(mothers_maiden_name);
+        console.log(phone);
+        console.log(email);
+        console.log(gender);
+        console.log(educational_qualification);
+        console.log(membership_fee);
+        console.log(share_count);
+        console.log(introduced_by);
+        console.log(witness);
+        let formData = new FormData();
+        formData.append("csrfmiddlewaretoken", csrf);
+        formData.append("membership_no",membership_no);
+        formData.append("form_data", form_data);
+        formData.append("guardian_name",guardian_name);
+        formData.append("mothers_maiden_name",mothers_maiden_name);
+        formData.append("phone", phone);
+        formData.append("email", email);
+        formData.append("gender", gender);
+        formData.append("eductional_qualification", eductional_qualification);
+        formData.append("membership_fee", membership_fee);
+        formData.append("share_count", share_count);
+        formData.append("introduced_by", introduced_by);
+        formData.append("witness", witness);
+        console.log(formData)
+        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+        alert(this.responseText);
+        //alert("password update successfully!");
+        }
+        };
+        xmlhttp.open("POST", "{% url 'student' %}", true);
+        xmlhttp.send(formData);
+      }
+    </script>
+    <script>
+      window.onload = function(){
+        alert('{{message}}')
+      }
+    </script>
+  </div>
+</body>
+</html>
