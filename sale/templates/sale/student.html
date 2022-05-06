@@ -45,8 +45,8 @@
     </div>
     <div class="form-group">
         <label for="eductional_qualification">eductional_qualification:</label>
-        <input type="text" class="form-control" id="eductional_qualification" placeholder="Enter eductional_qualification" name="eductional_qualification">
-    </div>
+        <input type="text" class="form-control" id="educational_qualification" placeholder="Enter eductional_qualification" name="eductional_qualification">
+      </div>
     <div class="form-group">
         <label for="membership_fee">membership_fee:</label>
         <input type="text" class="form-control" id="membership_fee" placeholder="Enter membership_fee" name="membership_fee">
@@ -66,24 +66,25 @@
     <div class="checkbox">
       <label><input type="checkbox" name="remember"> Remember me</label>
     </div>
-    <button type="submit" id="fetchBtn"class="btn btn-default"onclick="reset();">Submit</button>
+    <button type="button" id="fetchBtn" class="btn btn-default" onclick="submitForm();">Submit</button>
   </form>
 </div>
 <script type="text/javascript">
-  function reset() {
+  function submitForm() {
         console.log("Button Clicked");
         const membership_no = document.getElementById("membership_no").value;
-        const form_data = document.getElementById(" form_data").value;
+        const form_data = document.getElementById("form_data").value;
         const guardian_name = document.getElementById("guardian_name").value;
         const mothers_maiden_name = document.getElementById("mothers_maiden_name").value;
         const phone = document.getElementById("phone").value;
-        const email  = document.getElementById("email ").value;
+        const email  = document.getElementById("email").value;
         const gender = document.getElementById("gender").value;
         const educational_qualification = document.getElementById("educational_qualification").value;
         const membership_fee = document.getElementById("membership_fee").value;
         const share_count = document.getElementById("share_count").value;
         const introduced_by = document.getElementById("introduced_by").value;
         const witness  = document.getElementById("witness").value;
+        const csrf  = document.getElementsByName('csrfmiddlewaretoken')[0].value;
         console.log(csrf);
         console.log(membership_no);
         console.log(form_data);
@@ -106,7 +107,7 @@
         formData.append("phone", phone);
         formData.append("email", email);
         formData.append("gender", gender);
-        formData.append("eductional_qualification", eductional_qualification);
+        formData.append("educational_qualification", educational_qualification);
         formData.append("membership_fee", membership_fee);
         formData.append("share_count", share_count);
         formData.append("introduced_by", introduced_by);

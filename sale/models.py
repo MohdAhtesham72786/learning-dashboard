@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Student(models.Model):
     membership_no = models.CharField(max_length=15)
-    form_data = models.DateField()
+    form_data = models.CharField(max_length=10)
     guardian_name = models.CharField(max_length=200)
     mothers_maiden_name = models.CharField(max_length=200)
     phone = models.BigIntegerField(unique=True)
