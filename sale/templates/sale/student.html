@@ -20,8 +20,16 @@
         <input type="text" class="form-control" id="membership_no" placeholder="Enter membership_no" name="membership_no">
     </div>
     <div class="form-group">
-      <label for="form_data">form_data:</label>
-      <input type="text" class="form-control" id="form_data" placeholder="Enter form_data" name="form_data">
+      <label for="form_no">form_no:</label>
+      <input type="text" class="form-control" id="form_no" placeholder="Enter form_no" name="form_no">
+    </div>
+    <div class="form-group">
+      <label for="form_date">form_date:</label>
+      <input type="text" class="form-control" id="form_date" placeholder="Enter form_date" name="form_date">
+    </div>
+    <div class="form-group">
+      <label for="name">name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
     </div>
     <div class="form-group">
         <label for="guardian_name">guardian_name:</label>
@@ -30,6 +38,10 @@
     <div class="form-group">
         <label for="mothers_maiden_name">mothers_maiden_name:</label>
         <input type="text" class="form-control" id="mothers_maiden_name" placeholder="Enter mothers_maiden_name" name="mothers_maiden_name">
+    </div>
+    <div class="form-group">
+      <label for="dob">dob:</label>
+      <input type="text" class="form-control" id="dob" placeholder="Enter dob" name="dob">
     </div>
     <div class="form-group">
         <label for="phone">phone:</label>
@@ -46,7 +58,7 @@
     <div class="form-group">
         <label for="eductional_qualification">eductional_qualification:</label>
         <input type="text" class="form-control" id="educational_qualification" placeholder="Enter eductional_qualification" name="eductional_qualification">
-      </div>
+    </div>
     <div class="form-group">
         <label for="membership_fee">membership_fee:</label>
         <input type="text" class="form-control" id="membership_fee" placeholder="Enter membership_fee" name="membership_fee">
@@ -73,23 +85,29 @@
   function submitForm() {
         console.log("Button Clicked");
         const membership_no = document.getElementById("membership_no").value;
-        const form_data = document.getElementById("form_data").value;
+        const form_no = document.getElementById("form_no").value;
+        const form_date = document.getElementById("form_date").value;
+        const name = document.getElementById("name").value;
         const guardian_name = document.getElementById("guardian_name").value;
         const mothers_maiden_name = document.getElementById("mothers_maiden_name").value;
+        const dob = document.getElementById("dob").value;
         const phone = document.getElementById("phone").value;
-        const email  = document.getElementById("email").value;
+        const email = document.getElementById("email").value;
         const gender = document.getElementById("gender").value;
         const educational_qualification = document.getElementById("educational_qualification").value;
         const membership_fee = document.getElementById("membership_fee").value;
         const share_count = document.getElementById("share_count").value;
         const introduced_by = document.getElementById("introduced_by").value;
-        const witness  = document.getElementById("witness").value;
-        const csrf  = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+        const witness = document.getElementById("witness").value;
+        const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value;
         console.log(csrf);
         console.log(membership_no);
-        console.log(form_data);
+        console.log(form_no);
+        console.log(form_date);
+        console.log(name);
         console.log(guardian_name);
         console.log(mothers_maiden_name);
+        console.log(dob);
         console.log(phone);
         console.log(email);
         console.log(gender);
@@ -98,12 +116,16 @@
         console.log(share_count);
         console.log(introduced_by);
         console.log(witness);
+        
         let formData = new FormData();
         formData.append("csrfmiddlewaretoken", csrf);
-        formData.append("membership_no",membership_no);
-        formData.append("form_data", form_data);
-        formData.append("guardian_name",guardian_name);
-        formData.append("mothers_maiden_name",mothers_maiden_name);
+        formData.append("membership_no", membership_no);
+        formData.append("form_no", form_no);
+        formData.append("form_date", form_date);
+        formData.append("name", name);
+        formData.append("guardian_name", guardian_name);
+        formData.append("mothers_maiden_name", mothers_maiden_name);
+        formData.append("dob", dob);
         formData.append("phone", phone);
         formData.append("email", email);
         formData.append("gender", gender);
@@ -112,14 +134,19 @@
         formData.append("share_count", share_count);
         formData.append("introduced_by", introduced_by);
         formData.append("witness", witness);
-        console.log(formData)
+        console.log(formData);
         
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
         alert(this.responseText);
-        //alert("password update successfully!");
         }
+
+        if (this.readyState == 4 && this.status == 400) {
+          var msg = JSON.parse(this.responseText).message ; 
+          alert(msg);
+          }
+
         };
         xmlhttp.open("POST", "{% url 'student' %}", true);
         xmlhttp.send(formData);
