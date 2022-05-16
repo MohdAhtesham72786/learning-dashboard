@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+</head>
+<body>
+    <h1>Student Form (Django Model Form)</h1>
+    <h1>Show Data</h1>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>membership_no</th>
+            <th>form_no</th>
+            <th>form_date</th>
+            <th>name</th>
+            <th>guardian_name</th>
+            <th>mothers_maiden_name</th>
+            <th>dob</th>
+            <th>phone</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>educational_qualification</th>
+            <th>membership_fee</th>
+            <th>share_count</th>
+            <th>witness</th>
+        </tr>
+        </thead>
+        {% for student_list in student %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{student_list.membership_no}}</td>
+            <td>{{student_list.form_no}}</td>
+            <td>{{student_list.form_date}}</td>
+            <td>{{student_list.name}}</td>
+            <td>{{student_list.guardian_name}}</td>
+            <td>{{student_list.dob}}</td>
+            <td>{{student_list.phone}}</td>
+            <td>{{student_list.email}}</td>
+            <td>{{student_list.gender}}</td>
+            <td>{{student_list.educational_qualification}}</td>
+            <td>{{student_list.membership_fee}}</td>
+            <td>{{student_list.share_count}}</td>
+            <td>{{student_list.introduced_by}}</td>
+            <td>{{student_list.witness}}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        <thead>
+            <tr>
+                <th>membership_no</th>
+                <th>form_no</th>
+                <th>form_date</th>
+                <th>name</th>
+                <th>guardian_name</th>
+                <th>mothers_maiden_name</th>
+                <th>dob</th>
+                <th>phone</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>educational_qualification</th>
+                <th>membership_fee</th>
+                <th>share_count</th>
+                <th>witness</th>
+            </tr>
+    </table>
+</body>
+</html>
